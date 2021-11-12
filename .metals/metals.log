@@ -1,0 +1,13 @@
+[0m2021.11.03 14:53:02 INFO  Started: Metals version 0.10.7 in workspace 'C:\Users\kaston\Desktop\KeJANIWebApp\Kejani' for client Visual Studio Code 1.60.2.[0m
+[0m2021.11.03 14:53:04 INFO  time: initialize in 3.08s[0m
+[0m2021.11.03 14:53:24 WARN  Build server is not auto-connectable.[0m
+[0m2021.11.03 14:53:24 WARN  no build tool detected in workspace 'C:\Users\kaston\Desktop\KeJANIWebApp\Kejani'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.11.03 16:23:03 INFO  Started: Metals version 0.10.7 in workspace 'C:\Users\kaston\Desktop\KeJANIWebApp\Kejani' for client Visual Studio Code 1.60.2.[0m
+[0m2021.11.03 16:23:06 INFO  time: initialize in 3.17s[0m
+[0m2021.11.03 16:23:17 WARN  Build server is not auto-connectable.[0m
+[0m2021.11.03 16:23:17 WARN  no build tool detected in workspace 'C:\Users\kaston\Desktop\KeJANIWebApp\Kejani'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.11.03 23:34:17 INFO  Started: Metals version 0.10.8 in workspace 'C:\Users\kaston\Desktop\KeJANIWebApp\Kejani' for client Visual Studio Code 1.61.2.[0m
+[0m2021.11.03 23:34:19 INFO  time: initialize in 1.78s[0m
+[0m2021.11.03 23:34:27 WARN  Build server is not auto-connectable.[0m
+[0m2021.11.03 23:34:27 WARN  no build tool detected in workspace 'C:\Users\kaston\Desktop\KeJANIWebApp\Kejani'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.11.04 01:24:20 INFO  shutting down Metals[0m

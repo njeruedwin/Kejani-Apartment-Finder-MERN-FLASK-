@@ -1,0 +1,14 @@
+.admin-button {
+  background-color: rgb(239, 248, 248);
+  color: black;
+  margin-top: 3px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: larger;
+  height: 100%;
+}
+
+.my-heading {
+  font-size: 20px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-left: 500px;
+}
