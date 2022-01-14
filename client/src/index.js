@@ -9,12 +9,13 @@ import HousingCooperativeSignIn from "./Components/HousingCooperativeSignIn";
 import RegisterHousingCooperative from "./Components/RegisterHousingCooperative";
 import HousingCooperative from "./Components/HousingCooperative";
 import Admin from "./Components/Admin";
+import AdminSignIn from "./Components/AdminSignIn";
+import HousingCooperativeProfile from "./Components/HousingCooperativeProfile";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 ReactDOM.render(
   <Router>
-    <Navbar />
     <Switch>
       <Route path="/" component={App} exact />
       <Route path="/customersignin" component={CustomerSignIn} />
@@ -25,6 +26,11 @@ ReactDOM.render(
       />
       <Route path="/housingcooperative" component={HousingCooperative} />
       <Route path="/admin" component={Admin} />
+      <Route path="/administrator" component={AdminSignIn} />
+      <Route
+        path="/housingCooperativeProfile"
+        component={HousingCooperativeProfile}
+      />
       <Route
         path="/registerHousingCooperative"
         component={RegisterHousingCooperative}

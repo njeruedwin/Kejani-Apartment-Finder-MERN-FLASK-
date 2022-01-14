@@ -4,6 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import { getFromStorage } from "../utils/storage";
 import Apartments from "./Apartments";
+import beautifulblack from "../images/beautifulblack.jpg";
 
 class Admin extends Component {
   constructor(props) {
@@ -74,26 +75,39 @@ class Admin extends Component {
     }
 
     return (
-      <div className="container">
-        {/*left Pane*/}
-        <div className="col-md-3">
-          {this.props.location.state.customerName}
-          <br />
-          <hr />
-          <button
-            type="btn btn-primary"
-            className="btn "
-            onClick={this.handleLogOut}
-          >
-            Log Out
-          </button>
+      <div
+        style={{
+          backgroundImage: `url(${beautifulblack})`,
+          backgroundPosition: "center",
 
-          <h2 className="section-detail">Apartments view Panel</h2>
-        </div>
-        {/*right Pane*/}
-        <div className="col-md-9">
-          <div className="content-area">
-            <Apartments customerName={this.props.location.state.customerName} />
+          backgroundSize: "cover",
+        }}
+      >
+        <div className="container">
+          <br />
+          {/*left Pane*/}
+          <div className="col-md-3" style={{ color: "white" }}>
+            {this.props.location.state.customerName}
+            <br />
+            <hr />
+            <button
+              style={{ color: "black" }}
+              type="btn btn-primary"
+              className="btn "
+              onClick={this.handleLogOut}
+            >
+              Log Out
+            </button>
+
+            <h2 className="section-detail">Apartments view Panel</h2>
+          </div>
+          {/*right Pane*/}
+          <div className="col-md-9">
+            <div className="content-area">
+              <Apartments
+                customerName={this.props.location.state.customerName}
+              />
+            </div>
           </div>
         </div>
       </div>

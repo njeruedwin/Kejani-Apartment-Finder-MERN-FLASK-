@@ -6,7 +6,9 @@ const Analysis = require("../../models/Analysis");
 //import Aspects models
 const Electricity = require("../../models/Aspects/Electricity");
 const Water = require("../../models/Aspects/Water");
-
+const Sanitation = require("../../models/Aspects/Sanitation");
+const Internet = require("../../models/Aspects/Internet");
+const Security = require("../../models/Aspects/Security");
 /*
 Add Analysis
 */
@@ -100,6 +102,55 @@ Electricity
   }
 
   /*
+Sanitation
+  */
+  if (aspect === "Sanitation") {
+    Sanitation.find(
+      { housingCooperativeName: housingCooperativeName },
+      (err, housings) => {
+        if (err) {
+          return res.send({
+            success: false,
+            message: "Server Error",
+          });
+        }
+
+        //get add 1 to the number of comments given to the housing co-op
+        const housing = housings[0];
+        var commentCounts = housing.commentCounts + 1;
+        var positivesCounts = housing.positivesCounts;
+
+        if (sentiment === "pos") {
+          positivesCounts = positivesCounts + 1;
+        }
+        if (sentiment === "neg") {
+          positivesCounts = positivesCounts - 1;
+        }
+        var positivityPercentage = (positivesCounts / commentCounts) * 100;
+
+        //update the housing Cooperative Information
+        Sanitation.updateOne(
+          { housingCooperativeName: housingCooperativeName },
+          {
+            positivesCounts: positivesCounts,
+            commentCounts: commentCounts,
+            positivityPercentage: positivityPercentage,
+          }
+        )
+          .then(() => {
+            res.send({
+              success: true,
+              message: "New Analysis Added. Housing Updated",
+            });
+          })
+          .catch((error) => {
+            return res.send({ message: error });
+          });
+      }
+    );
+  }
+
+  /*
 Water
   */
   if (aspect === "Water") {
@@ -128,6 +179,104 @@ Water
 
         //update the housing Cooperative Information
         Water.updateOne(
+          { housingCooperativeName: housingCooperativeName },
+          {
+            positivesCounts: positivesCounts,
+            commentCounts: commentCounts,
+            positivityPercentage: positivityPercentage,
+          }
+        )
+          .then(() => {
+            res.send({
+              success: true,
+              message: "New Analysis Added. Housing Updated",
+            });
+          })
+          .catch((error) => {
+            return res.send({ message: error });
+          });
+      }
+    );
+  }
+
+  /*
+Internet
+  */
+  if (aspect === "Internet") {
+    Internet.find(
+      { housingCooperativeName: housingCooperativeName },
+      (err, housings) => {
+        if (err) {
+          return res.send({
+            success: false,
+            message: "Server Error",
+          });
+        }
+
+        //get add 1 to the number of comments given to the housing co-op
+        const housing = housings[0];
+        var commentCounts = housing.commentCounts + 1;
+        var positivesCounts = housing.positivesCounts;
+
+        if (sentiment === "pos") {
+          positivesCounts = positivesCounts + 1;
+        }
+        if (sentiment === "neg") {
+          positivesCounts = positivesCounts - 1;
+        }
+        var positivityPercentage = (positivesCounts / commentCounts) * 100;
+
+        //update the housing Cooperative Information
+        Internet.updateOne(
+          { housingCooperativeName: housingCooperativeName },
+          {
+            positivesCounts: positivesCounts,
+            commentCounts: commentCounts,
+            positivityPercentage: positivityPercentage,
+          }
+        )
+          .then(() => {
+            res.send({
+              success: true,
+              message: "New Analysis Added. Housing Updated",
+            });
+          })
+          .catch((error) => {
+            return res.send({ message: error });
+          });
+      }
+    );
+  }
+
+  /*
+Security
+  */
+  if (aspect === "Security") {
+    Security.find(
+      { housingCooperativeName: housingCooperativeName },
+      (err, housings) => {
+        if (err) {
+          return res.send({
+            success: false,
+            message: "Server Error",
+          });
+        }
+
+        //get add 1 to the number of comments given to the housing co-op
+        const housing = housings[0];
+        var commentCounts = housing.commentCounts + 1;
+        var positivesCounts = housing.positivesCounts;
+
+        if (sentiment === "pos") {
+          positivesCounts = positivesCounts + 1;
+        }
+        if (sentiment === "neg") {
+          positivesCounts = positivesCounts - 1;
+        }
+        var positivityPercentage = (positivesCounts / commentCounts) * 100;
+
+        //update the housing Cooperative Information
+        Security.updateOne(
           { housingCooperativeName: housingCooperativeName },
           {
             positivesCounts: positivesCounts,

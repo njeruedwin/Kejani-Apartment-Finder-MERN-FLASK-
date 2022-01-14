@@ -24,6 +24,11 @@ const addUserCommentRoute = require("./routes/api/addUserComment");
 const addAnalysisRoute = require("./routes/api/addAnalysis");
 const getWaterAnalysisRoute = require("./routes/api/getwateranalysis");
 const getElectricityAnalysisRoute = require("./routes/api/getelectricityanalysis");
+const getSanitationAnalysisRoute = require("./routes/api/getSanitationAnalysis");
+const getInternetAnalysisRoute = require("./routes/api/getInternetanalysis");
+const getSecurityAnalysisRoute = require("./routes/api/getSecurityanalysis");
+const updateUserProfileRoute = require("./routes/api/updateUserProfile");
+const getUserProfileRoute = require("./routes/api/getUserProfile");
 const { verify } = require("jsonwebtoken");
 
 //set routes
@@ -44,6 +49,11 @@ app.use("/api/admin/addusercomment", addUserCommentRoute);
 app.use("/api/admin/addanalysis", addAnalysisRoute);
 app.use("/api/admin/getwateranalysis", getWaterAnalysisRoute);
 app.use("/api/admin/getelectricityanalysis", getElectricityAnalysisRoute);
+app.use("/api/admin/getsanitationanalysis", getSanitationAnalysisRoute);
+app.use("/api/admin/getinternetanalysis", getInternetAnalysisRoute);
+app.use("/api/admin/getsecurityanalysis", getSecurityAnalysisRoute);
+app.use("/api/admin/updateuserprofile", updateUserProfileRoute);
+app.use("/api/admin/getuserprofile", getUserProfileRoute);
 
 //connect to the database
 mongoose.connect(

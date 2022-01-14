@@ -7,6 +7,9 @@ import { getFromStorage } from "../utils/storage";
 import Post from "./HousingCooperative/View/Post";
 import Dashboard from "./HousingCooperative/View/Dashboard";
 import MyApartments from "./HousingCooperative/View/MyApartments";
+import beautifulblack from "../images/beautifulblack.jpg";
+import CreateUserProfileView from "./HousingCooperative/View/CreateUserProfileView";
+import UserProfileView from "./HousingCooperative/View/UserProfileView";
 
 class HousingCooperativeView extends Component {
   constructor(props) {
@@ -18,6 +21,8 @@ class HousingCooperativeView extends Component {
       dashboardView: true,
       postView: false,
       myApartmentsView: false,
+      createUserProfileView: false,
+      userProfileView: false,
     };
 
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -60,12 +65,32 @@ class HousingCooperativeView extends Component {
         dashboardView: false,
         myApartmentsView: false,
         postView: true,
+        createUserProfileView: false,
+        userProfileView: false,
       });
     } else if (event.target.id === "myApartmentsView") {
       return this.setState({
         dashboardView: false,
         myApartmentsView: true,
         postView: false,
+        createUserProfileView: false,
+        userProfileView: false,
+      });
+    } else if (event.target.id === "createUserProfileView") {
+      return this.setState({
+        dashboardView: false,
+        createUserProfileView: true,
+        postView: false,
+        myApartmentsView: false,
+        userProfileView: false,
+      });
+    } else if (event.target.id === "userProfileView") {
+      return this.setState({
+        dashboardView: false,
+        createUserProfileView: false,
+        postView: false,
+        myApartmentsView: false,
+        userProfileView: true,
       });
     } else {
       return this.setState({
@@ -76,11 +101,35 @@ class HousingCooperativeView extends Component {
 
   myView() {
     if (this.state.dashboardView) {
-      return <Dashboard />;
+      return (
+        <Dashboard
+          housingCooperativeName={
+            this.props.location.state.housingCooperativeName
+          }
+        />
+      );
     }
     if (this.state.postView) {
       return (
         <Post
+          housingCooperativeName={
+            this.props.location.state.housingCooperativeName
+          }
+        />
+      );
+    }
+    if (this.state.createUserProfileView) {
+      return (
+        <CreateUserProfileView
+          housingCooperativeName={
+            this.props.location.state.housingCooperativeName
+          }
+        />
+      );
+    }
+    if (this.state.userProfileView) {
+      return (
+        <UserProfileView
           housingCooperativeName={
             this.props.location.state.housingCooperativeName
           }
@@ -128,58 +177,113 @@ class HousingCooperativeView extends Component {
     }
 
     return (
-      <div className="container">
-        {/*left Pane*/}
-        <div className="col-md-3">
-          <br />
-          {housingCooperativeName} Housing Cooperative
-          <br />
-          <hr />
-          {this.props.name}
-          <button
-            type="btn btn-primary"
-            className="btn "
-            onClick={this.handleLogOut}
+      <div
+        style={{
+          backgroundImage: `url(${beautifulblack})`,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          color: "white",
+        }}
+      >
+        <div className="container">
+          {/*left Pane*/}
+          <div
+            className="col-md-3"
+            style={{ backgroundColor: "rgb(0,0,0,0.5)" }}
           >
-            Log Out
-          </button>
-          <br />
-          <hr />
-          <button
-            type="btn btn-primary"
-            className="btn "
-            id="dashboardView"
-            onClick={this.changeView}
-          >
-            Dashboard View
-          </button>
-          <br />
-          <hr />
-          <button
-            type="btn btn-primary"
-            className="btn "
-            id="postView"
-            onClick={this.changeView}
-          >
-            Post An Apartment
-          </button>
-          <br />
-          <hr />
-          <button
-            type="btn btn-primary"
-            className="btn "
-            id="myApartmentsView"
-            onClick={this.changeView}
-          >
-            View My Apartments
-          </button>
-          <br />
-          <hr />
-          <h2 className="section-detail">Housing Cooperative view Panel</h2>
-        </div>
-        {/*right Pane*/}
-        <div className="col-md-9">
-          <div className="content-area">{this.myView()}</div>
+            <br />
+            <button
+              style={{ color: "black" }}
+              type="btn btn-primary"
+              className="btn "
+              id="userProfileView"
+              onClick={this.changeView}
+            >
+              {housingCooperativeName} Housing Cooperative
+            </button>
+            <br />
+            <hr />
+            {this.props.name}
+            <button
+              style={{ color: "black" }}
+              type="btn btn-primary"
+              className="btn "
+              onClick={this.handleLogOut}
+            >
+              Log Out
+            </button>
+            <br />
+            <hr />
+            <button
+              style={{ color: "black" }}
+              type="btn btn-primary"
+              className="btn "
+              id="dashboardView"
+              onClick={this.changeView}
+            >
+              Dashboard View
+            </button>
+            <br />
+            <hr />
+            <button
+              style={{ color: "black" }}
+              type="btn btn-primary"
+              className="btn "
+              id="postView"
+              onClick={this.changeView}
+            >
+              Post An Apartment
+            </button>
+            <br />
+            <hr />
+            <button
+              style={{ color: "black" }}
+              type="btn btn-primary"
+              className="btn "
+              id="myApartmentsView"
+              onClick={this.changeView}
+            >
+              View My Apartments
+            </button>
+            <br />
+            <hr />
+            <button
+              style={{ color: "black" }}
+              type="btn btn-primary"
+              className="btn "
+              id="createUserProfileView"
+              onClick={this.changeView}
+            >
+              Edit user Profile
+            </button>
+            <br />
+            <hr />
+            <h2 className="section-detail">
+              <br />
+              Housing Cooperative view Panel
+              <br />
+              <br />
+              <br />
+              <br />
+            </h2>
+          </div>
+          {/*right Pane*/}
+          <div className="col-md-9">
+            <div
+              className="content-area jumbotron"
+              style={{
+                backgroundColor: "rgb(255,255,255,0.2)",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+
+                color: "white",
+              }}
+            >
+              {this.myView()}
+            </div>
+          </div>
         </div>
       </div>
     );

@@ -12,6 +12,36 @@ const HousingCooperativeSchema = new mongoose.Schema({
     default: "",
     required: true,
   },
+  email: {
+    type: String,
+    default: "",
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    default: "",
+    required: true,
+  },
+  addressOne: {
+    type: String,
+    default: "",
+    required: true,
+  },
+  addressTwo: {
+    type: String,
+    default: "",
+    required: true,
+  },
+  location: {
+    type: String,
+    default: "",
+    required: true,
+  },
+  description: {
+    type: String,
+    default: "",
+    required: true,
+  },
 });
 
 //set up methods for the user schema

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { getFromStorage } from "../utils/storage";
 import { Redirect } from "react-router-dom";
+import beautifulblack from "../images/beautifulblack.jpg";
 import axios from "axios";
 
 class RegisterHousingCooperative extends Component {
@@ -113,33 +114,78 @@ class RegisterHousingCooperative extends Component {
     }
     if (signedUp) {
       return (
-        <div className="container">
-          <div class="alert alert-success ">
-            New Housing Cooperative Successfully Signed In
-          </div>
+        <div
+          style={{
+            backgroundImage: `url(${beautifulblack})`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            color: "white",
+            height: "100vh",
+          }}
+        >
+          <div
+            className="container"
+            style={{
+              backgroundImage: `url(${beautifulblack})`,
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              height: "100vh",
+            }}
+          >
+            <br />
+            <br />
+            <div class="alert alert-success ">
+              New Housing Cooperative Successfully Signed In
+            </div>
 
-          <Link to="/registerhousingcooperative">
-            <button
-              type="button"
-              name=""
-              id=""
-              class="btn btn-default"
-              onClick={this.signedUp}
-            >
-              {" "}
-              Ok
-            </button>
-          </Link>
+            <Link to="/registerhousingcooperative">
+              <button
+                type="button"
+                name=""
+                id=""
+                class="btn btn-default"
+                onClick={this.signedUp}
+              >
+                {" "}
+                Ok
+              </button>
+            </Link>
+          </div>
         </div>
       );
     }
 
     return (
-      <div>
-        <div className="container">
+      <div
+        style={{
+          backgroundImage: `url(${beautifulblack})`,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          color: "white",
+          height: "100vh",
+        }}
+      >
+        <div
+          className="container"
+          style={{
+            backgroundImage: `url(${beautifulblack})`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            height: "100vh",
+          }}
+        >
+          <br />
+          Administrator
+          <br />
+          <br />
           <button
             type="btn btn-primary"
             className="btn "
+            style={{ color: "black" }}
             onClick={this.handleLogOut}
           >
             Log Out
@@ -147,6 +193,7 @@ class RegisterHousingCooperative extends Component {
           <h1 style={{ textAlign: "center" }}>
             Register A New Housing Cooperative
           </h1>
+          <hr />
           <div className="container">
             <div className="row">
               <div className="col-md-4"></div>
@@ -161,7 +208,11 @@ class RegisterHousingCooperative extends Component {
                     aria-describedby="helpId"
                     onChange={this.onTextChange}
                   />
-                  <small id="helpId" className="form-text text-muted">
+                  <small
+                    id="helpId"
+                    className="form-text text-muted"
+                    style={{ color: "white" }}
+                  >
                     Name of The Housing Cooperative
                   </small>
                   <br />
@@ -173,7 +224,11 @@ class RegisterHousingCooperative extends Component {
                     aria-describedby="password"
                     onChange={this.onTextChange}
                   />
-                  <small id="passwordHelpId" className="form-text text-muted">
+                  <small
+                    id="passwordHelpId"
+                    className="form-text text-muted"
+                    style={{ color: "white" }}
+                  >
                     Password
                   </small>
                   <br />

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 import AnalysisCard from "./HousingCooperative/View/AnalysisCard";
+import ocean from "../images/ocean.jpg";
 
 import axios from "axios";
 
@@ -11,6 +12,7 @@ class Apartments extends Component {
     super(props);
 
     this.state = {
+      allRooms: [],
       rooms: [],
       comment: "",
       sentiment: "",
@@ -19,10 +21,14 @@ class Apartments extends Component {
       customerName: "",
       commentError: "",
       message: "",
+
+      searchType: "",
+      searchPrice: "",
     };
 
     this.handleCommentChange = this.handleCommentChange.bind(this);
     this.apartmentsView = this.apartmentsView.bind(this);
+    this.myNavigation = this.myNavigation.bind(this);
     this.submitData = this.submitData.bind(this);
   }
 
@@ -36,6 +42,7 @@ class Apartments extends Component {
       }
 
       this.setState({
+        allRooms: res.data,
         rooms: res.data,
         customerName: this.props.customerName,
       });
@@ -51,18 +58,69 @@ class Apartments extends Component {
   }
 
   apartmentsView = () => {
-    return this.state.rooms.map((room) => {
+    //sort the posted apartments by date
+    const sortedRooms = this.state.rooms.sort((a, b) => {
+      const dateAInMillis = new Date(a.createdAt).getTime();
+      const dateBInMillis = new Date(b.createdAt).getTime();
+      return dateBInMillis - dateAInMillis;
+    });
+    console.log(sortedRooms);
+    return sortedRooms.map((room) => {
       return (
-        <div>
-          <div className="row">
+        <div style={{ fontFamily: "sans-serif" }}>
+          <div
+            className="row"
+            style={{
+              backgroundColor: "rgb(255, 255, 255,0.8)",
+              borderRadius: "0px",
+              boxShadow: "rgb(38,57,77) 0px 20px 30px -10px",
+            }}
+          >
             <div className="col-md-8">
               <div class="card text-left">
                 <img class="card-img-top" src="holder.js/100px180/" alt="" />
                 <div class="card-body">
-                  <h4 class="card-title">{room.housingCooperativeName}</h4>
-                  <p class="card-text">Apartments Type: {room.type}</p>
-                  <p class="card-text">price: {room.price}</p>
-                  <p class="card-text">Description: {room.status}</p>
+                  <h4
+                    class="card-title"
+                    style={{
+                      letterSpacing: "2px",
+                      fontSize: "20px",
+                    }}
+                  >
+                    <Link
+                      to={{
+                        pathname: "/housingCooperativeProfile",
+                        housingCooperativeName: room.housingCooperativeName,
+                      }}
+                    >
+                      {room.housingCooperativeName}
+                    </Link>
+                  </h4>
+                  <p class="card-text">
+                    <strong>Apartments Type</strong>:{" "}
+                    <span style={{ fontStyle: "italic" }}> {room.type} </span>
+                  </p>
+                  <p class="card-text">
+                    <strong>price: </strong>
+                    <span style={{ fontStyle: "italic" }}> {room.price} </span>
+                  </p>
+                  <p class="card-text">
+                    <strong>Description:</strong>{" "}
+                    <span style={{ fontStyle: "italic" }}> {room.status} </span>
+                  </p>
+                  <p class="card-text">
+                    <strong style={{ color: "green", fontStyle: "italic" }}>
+                      <Link
+                        to={{
+                          pathname: "/housingCooperativeProfile",
+                          housingCooperativeName: room.housingCooperativeName,
+                        }}
+                      >
+                        Contact for Booking
+                      </Link>
+                    </strong>{" "}
+                  </p>
+
                   <div class="form-group">
                     <label for=""></label>
                     <div class="form-group">
@@ -79,12 +137,13 @@ class Apartments extends Component {
                             aspect: event.target.value,
                           });
                         }}
-                        name=""
-                        id=""
                       >
                         <option value="">Select Aspect To Comment On</option>
                         <option value="Water">Water</option>
                         <option value="Electricity">Electricity</option>
+                        <option value="Sanitation">Sanitation</option>
+                        <option value="Internet">Internet</option>
+                        <option value="Security">Security</option>
                       </select>
                     </div>
                     <input
@@ -118,6 +177,7 @@ class Apartments extends Component {
               housingCooperativeName={room.housingCooperativeName}
             />
           </div>
+          <br /> <br />
         </div>
       );
     });
@@ -159,10 +219,64 @@ class Apartments extends Component {
     });
   }
 
+  myNavigation = () => {
+    return (
+      <div
+        style={{
+          backgroundColor: "rgb(0,0,0,0.4)",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <div class="card-body" style={{ opacity: "1.0" }}>
+          <p
+            class="h1 font-weight-bold mb-4 text-white"
+            style={{ color: "white" }}
+          >
+            Discover the Amazing City
+          </p>
+
+          <div class="row justify-content-center" style={{ margin: "2px" }}>
+            <div class="col-md-6 ">
+              <div class="form-group">
+                <select
+                  class="form-control form-control-sm"
+                  onChange={(event) => {
+                    this.setState({
+                      rooms: this.state.allRooms.filter((item) =>
+                        item.type.includes(event.target.value)
+                      ),
+                    });
+                  }}
+                >
+                  <option value="">Open this select menu</option>
+                  <option value="One Bedroom">One Bedroom</option>
+                  <option value="Two Bedroom">Two Bedroom</option>
+                  <option value="Three Bedroom">Three Bedroom</option>
+                  <option value="Bedsitter">Bedsitter</option>
+                </select>
+                <small
+                  id="helpId"
+                  className="form-text "
+                  style={{ color: "white" }}
+                >
+                  what are you looking for?
+                </small>
+              </div>
+            </div>
+            <div class="col-md-4 "></div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   render() {
     return (
-      <div>
-        <h1 style={{ textAlign: "center" }}>Ayee</h1>
+      <div style={{ height: "100vh" }}>
+        <h1 style={{ textAlign: "center" }}>{this.myNavigation()}</h1>
+        <hr />
         <div className="row">
           <div className="col-md-12"> {this.apartmentsView()}</div>
         </div>

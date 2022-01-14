@@ -7,6 +7,9 @@ const HousingCooperative = require("../../models/HousingCooperative");
 //import the aspects models
 const Electricity = require("../../models/Aspects/Electricity");
 const Water = require("../../models/Aspects/Water");
+const Sanitation = require("../../models/Aspects/Sanitation");
+const Internet = require("../../models/Aspects/Internet");
+const Security = require("../../models/Aspects/Security");
 
 /*
 Add an Apartment 
@@ -37,7 +40,7 @@ router.post("/", (req, res) => {
       if (err) {
         res.send({
           success: false,
-          message: "Server Error: find",
+          message: "Server Error: find house",
         });
       }
 
@@ -53,6 +56,12 @@ router.post("/", (req, res) => {
       const newHousingCooperative = new HousingCooperative({
         housingCooperativeName,
         password,
+        location: "null",
+        addressOne: "null",
+        addressTwo: "null",
+        email: "null",
+        phoneNumber: "null",
+        description: "null",
       });
 
       //encrypt the password
@@ -77,7 +86,22 @@ router.post("/", (req, res) => {
           if (err) {
             return res.send({
               success: false,
-              message: "Server Error: save",
+              message: "Server Error: electricity save",
+            });
+          }
+        });
+
+        const newSanitation = new Sanitation({
+          housingCooperativeName: housingCooperativeName,
+          commentCounts: 0,
+          positivesCounts: 0,
+          positivityPercentage: 0,
+        });
+        newSanitation.save((err, HousingCooperative) => {
+          if (err) {
+            return res.send({
+              success: false,
+              message: "Server Error:  sanitation save",
             });
           }
         });
@@ -92,7 +116,37 @@ router.post("/", (req, res) => {
           if (err) {
             return res.send({
               success: false,
-              message: "Server Error: save",
+              message: "Server Error: water save",
+            });
+          }
+        });
+
+        const newInternet = new Internet({
+          housingCooperativeName: housingCooperativeName,
+          commentCounts: 0,
+          positivesCounts: 0,
+          positivityPercentage: 0,
+        });
+        newInternet.save((err, HousingCooperative) => {
+          if (err) {
+            return res.send({
+              success: false,
+              message: "Server Error: Internet save",
+            });
+          }
+        });
+
+        const newSecurity = new Security({
+          housingCooperativeName: housingCooperativeName,
+          commentCounts: 0,
+          positivesCounts: 0,
+          positivityPercentage: 0,
+        });
+        newSecurity.save((err, HousingCooperative) => {
+          if (err) {
+            return res.send({
+              success: false,
+              message: "Server Error: Security save",
             });
           }
         });

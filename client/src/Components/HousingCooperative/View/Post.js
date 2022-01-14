@@ -55,26 +55,31 @@ export class Post extends Component {
   render() {
     const { postError, postErrorMessage } = this.state;
     return (
-      <div>
-        <h1 style={{ textAlign: "center" }}>Post A New Apartment</h1>
+      <div style={{ backgroundColor: "rgb(0,0,0,0.5)" }}>
+        <p style={{ textAlign: "center", fontSize: "40px" }}>
+          Post A New Apartment
+        </p>
         <hr />
         <div>
           <div className="row">
             <div className="col-md-4"></div>
             <div className="col-md-4">
               <div class="form-group">
-                <input
-                  type="text"
-                  name=""
-                  id="type"
-                  class="form-control"
-                  placeholder=" e.g two bedroom apartment"
-                  aria-describedby="helpId"
-                  onChange={this.onTextChange}
-                />
-                <small id="helpId" class="text-muted">
-                  Apartment Type
-                </small>
+                {/*change here */}
+                <select
+                  class="form-control form-control-sm"
+                  onChange={(event) => {
+                    return this.setState({
+                      type: event.target.value,
+                    });
+                  }}
+                >
+                  <option value="">Room Type</option>
+                  <option value="One Bedroom">One Bedroom</option>
+                  <option value="Two Bedroom">Two Bedroom</option>
+                  <option value="Three Bedroom">Three Bedroom</option>
+                  <option value="Bedsitter">Bedsitter</option>
+                </select>
                 <hr />
 
                 <input

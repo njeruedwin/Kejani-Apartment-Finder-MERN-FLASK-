@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import { setInStorage } from "../utils/storage";
+import signinapartment from "../images/apartment4.jpg";
+import beautifulblack from "../images/beautifulblack.jpg";
 
 class CustomerSignIn extends Component {
   constructor(props) {
@@ -80,9 +82,25 @@ class CustomerSignIn extends Component {
       );
     }
     return (
-      <div className="container">
-        <h1 style={{ textAlign: "center" }}>Sign In</h1>
-        <div className="container">
+      <div
+        style={{
+          backgroundImage: `url(${beautifulblack})`,
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          height: "100vh",
+        }}
+      >
+        <div
+          className="container"
+          style={{
+            color: "white",
+            borderRadius: "0px",
+            paddingTop: "150px",
+            boxShadow: "rgb(38,57,77) 0px 20px 30px -10px",
+          }}
+        >
+          <h1 style={{ textAlign: "center" }}>Sign In</h1>
           <div className="row">
             <div className="col-md-4"></div>
             <div className="col-md-4">
@@ -96,7 +114,11 @@ class CustomerSignIn extends Component {
                   aria-describedby="helpId"
                   onChange={this.handleCustomerNameChange}
                 />
-                <small id="helpId" className="form-text text-muted">
+                <small
+                  id="helpId"
+                  className="form-text text-muted"
+                  style={{ color: "white" }}
+                >
                   User Name
                 </small>
                 <br />
@@ -108,7 +130,11 @@ class CustomerSignIn extends Component {
                   aria-describedby="password"
                   onChange={this.handlePasswordChange}
                 />
-                <small id="passwordHelpId" className="form-text text-muted">
+                <small
+                  id="passwordHelpId"
+                  className="form-text text-muted"
+                  style={{ color: "white" }}
+                >
                   Password
                 </small>
                 <br />
